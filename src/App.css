@@ -4,28 +4,31 @@ body {
 .App {
   color: white;
   background-color: rgb(45, 42, 42);
-}
-form {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  position: relative;
+  align-items: center;
 }
+
 .input {
   height: 200px;
   width: 500px;
   border: 2px white solid;
   margin-top: 10px;
-
   display: flex;
 }
-
-button {
+.forms {
+  display: flex;
+  justify-content: center;
+}
+.formButton {
   width: 53px;
   height: 29px;
   background: #007bff;
   position: absolute;
-  margin-top: 180px;
   border-radius: 5px;
+  margin-top: -40px;
+  margin-left: 420px;
 }
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -52,3 +55,54 @@ button {
     transform: rotate(360deg);
   }
 }
+
+.navbar li {
+  display: inline;
+  margin: 20px;
+  color: white;
+}
+.navbar {
+  background-color: rgb(63, 60, 60);
+  width: 600px;
+  height: 50px;
+  text-align: center;
+  display: flex;
+  margin: 0 auto 0 auto;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+.profile {
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.profile h2 {
+  margin-left: 60px;
+}
+.profilForm {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+}
+#newTweetContainer {
+  border: 1px white solid;
+  margin-bottom: 10px;
+  background-color: #343a40;
+  width: 500px;
+  margin-right: 40px;
+  padding: 10px;
+}
+.info {
+  display: flex;
+  justify-content: space-around;
+  color: #6c757d;
+}
+/* #date {
+  justify-content: flex-end;
+}
+#username {
+  justify-content: flex-start;
+} */

@@ -6,21 +6,55 @@ import DisplayTweet from "./Tweet";
 class TweetsList extends Component {
   constructor(props) {
     super(props);
-  
+    this.state = {
+      tweets: [],
+      myTweet: "",
+      loading: true
+    };
+    this.getTweetFunc = this.getTweetFunc.bind(this);
   }
 
+  getTweetFunc() {
+    getMessage().then(response => {
+      console.log(response);
+      console.log(response.data.tweets);
+      this.setState({ tweets: response.data.tweets });
+    });
+  }
+
+  componentDidMount() {
+    this.getTweetFunc();
+    try {
+      setInterval(this.getTweetFunc, 10000);
+      this.setState({ loading: false });
+    } catch (e) {
+      console.error(e);
+    }
+  }
 
   render() {
+    const { loading } = this.state;
     return (
       <div>
-        <ul>
-          {this.props.messages.map((message, i) => (
-            <Message textMessage={message.textMessage} key={i} />
-     
-          ))}
-        </ul>
+        {loading && <h3>loading...</h3>}
+        {!loading && (
+          <div className="tweetList">
+            <ul>
+              {this.state.tweets.map(tweet => (
+                // <Message textMessage={message.textMessage} key={i} />
+                <DisplayTweet
+                  userName={tweet.userName}
+                  date={tweet.date}
+                  content={tweet.content}
+                  key={[tweet.date, +"by " + tweet.userName]}
+                />
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     );
   }
 }
+
 export default TweetsList;

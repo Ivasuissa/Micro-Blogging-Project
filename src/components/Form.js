@@ -1,20 +1,21 @@
 import React, { Component, Fragment } from "react";
 import { getMessage, postMessage } from "./lib/api";
+import Profile from "./Profile";
 
 class Form extends Component {
   state = {
-    message: "",
-    pseudo: "Eva"
+    message: ""
   };
 
   createMessage = () => {
     const { addMessage } = this.props;
-    const message = {
-      TheMessage: this.state.message,
-      pseudo: this.state.pseudo
+    const tweet = {
+      content: this.state.message,
+      userName: localStorage.getItem("userName"),
+      date: new Date().toISOString().toString()
     };
 
-    addMessage(message);
+    addMessage(tweet);
     this.setState({ message: "" });
   };
 
@@ -30,7 +31,7 @@ class Form extends Component {
 
   render() {
     return (
-      <Fragment>
+      <div className="forms">
         <form onSubmit={this.handleSubmit}>
           <textarea
             onChange={this.handleChange}
@@ -41,9 +42,15 @@ class Form extends Component {
             required
             value={this.state.message}
           />
-          <button type="submit">Tweet</button>
+          <button
+            className="formButton"
+            onClick={this.createMessage}
+            type="submit"
+          >
+            Tweet
+          </button>
         </form>
-      </Fragment>
+      </div>
     );
   }
 }
