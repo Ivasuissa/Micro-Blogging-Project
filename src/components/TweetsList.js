@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Message from "./Message";
 import { getMessage } from "./lib/api";
 import DisplayTweet from "./Tweet";
+import { TweetsListContext } from "./TweetsListContext";
 
 class TweetsList extends Component {
   constructor(props) {
@@ -42,12 +43,14 @@ class TweetsList extends Component {
             <ul>
               {this.state.tweets.map(tweet => (
                 // <Message textMessage={message.textMessage} key={i} />
-                <DisplayTweet
-                  userName={tweet.userName}
-                  date={tweet.date}
-                  content={tweet.content}
-                  key={[tweet.date, +"by " + tweet.userName]}
-                />
+                <TweetsListContext.Provider value={this.state.tweets}>
+                  <DisplayTweet
+                    // userName={tweet.userName}
+                    // date={tweet.date}
+                    // content={tweet.content}
+                    key={[tweet.date, +"by " + tweet.userName]}
+                  />
+                </TweetsListContext.Provider>
               ))}
             </ul>
           </div>

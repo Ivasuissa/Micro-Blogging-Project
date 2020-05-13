@@ -4,7 +4,8 @@ import Profile from "./Profile";
 
 class Form extends Component {
   state = {
-    message: ""
+    message: "",
+    localStorage: false
   };
 
   createMessage = () => {
@@ -16,6 +17,9 @@ class Form extends Component {
     };
 
     addMessage(tweet);
+    localStorage.setItem("Content", tweet.content);
+    localStorage.setItem("Data", tweet.date);
+    this.setState({ localStorage: true });
     this.setState({ message: "" });
   };
 
@@ -45,6 +49,7 @@ class Form extends Component {
           <button
             className="formButton"
             onClick={this.createMessage}
+            onClick={this.checkLocalStorage}
             type="submit"
           >
             Tweet

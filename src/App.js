@@ -6,6 +6,8 @@ import TweetsList from "./components/TweetsList";
 import { getMessage, postMessage } from "./components/lib/api";
 import Profile from "./components/Profile";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import User from "./components/firebaseComponent";
+// https://microblogging-eva-itc.web.app/
 
 class App extends Component {
   state = {
@@ -35,6 +37,7 @@ class App extends Component {
               </li>
             </ul>
           </div>
+          <User />
           <Switch>
             <Route exact path="/">
               <h1>Welcome</h1>
