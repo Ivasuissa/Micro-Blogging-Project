@@ -22,11 +22,11 @@ class User extends React.Component {
   };
 
   componentDidMount = async () => {
-    const { addMessage } = this.props;
+    this.grabTweets();
     let tweet = {
       userName: localStorage.getItem("userName"),
-      date: new Date().toISOString(),
-      content: "Hello"
+      date: localStorage.getItem("Date"),
+      content: localStorage.getItem("Content")
     };
     console.log("accesing database");
     let response = await this.addTweetToFirestore(tweet);
@@ -42,6 +42,20 @@ class User extends React.Component {
       console.log(error);
       return "Error";
     }
+  };
+
+  grabTweets = async () => {
+    let response = await firebase.database().ref("tweeter").once('value').then((snapshot)=>{
+      snapshot.forEach((childSnapshot)=>{
+        console.log(childSnapshot)
+        // var childKey = childSnapshot.key;
+        // var childData = childSnapshot.val();
+        // console.log(`childkey: ${childkey}`)
+        // console.log(`childData: ${childData}`)
+      })
+
+    });
+    console.log(response);
   };
 
   render() {
