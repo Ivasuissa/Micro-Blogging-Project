@@ -10,12 +10,12 @@ function DisplayTweet(props) {
     <TweetsListContext.Consumer>
       {data => {
         return data.map((mess, i) => (
-          <div key={i} id="newTweetContainer">
+          <div key={i} className="newTweetContainer">
             <div className="info">
-               <span id="username">{mess.userName}</span>      
-              <span id="date"> {mess.date} </span>
+               <span className="username">{mess.userName}</span>      
+              <span className="date"> {mess.date} </span>
             </div>
-               <p id="tweetOutput"> {mess.content} </p>   
+               <p className="tweetOutput"> {mess.content} </p>   
           </div>
         ));
       }}

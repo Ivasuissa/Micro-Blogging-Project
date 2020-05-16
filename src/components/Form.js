@@ -16,7 +16,7 @@ class Form extends Component {
       date: new Date().toISOString().toString()
     };
 
-    addMessage(tweet);
+  
     localStorage.setItem("Content", tweet.content);
     localStorage.setItem("Data", tweet.date);
     this.setState({ localStorage: true });

@@ -4,13 +4,15 @@ import { getMessage } from "./lib/api";
 import DisplayTweet from "./Tweet";
 import { TweetsListContext } from "./TweetsListContext";
 
+
 class TweetsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       tweets: [],
       myTweet: "",
-      loading: true
+      loading: true,
+    
     };
     this.getTweetFunc = this.getTweetFunc.bind(this);
   }
@@ -22,7 +24,7 @@ class TweetsList extends Component {
       this.setState({ tweets: response.data.tweets });
     });
   }
-
+ 
   componentDidMount() {
     this.getTweetFunc();
     try {

@@ -2,11 +2,14 @@ import React from "react";
 import firestore from "./firestore";
 import firebase from "./firestore.js";
 import Form from "./Form";
+import { getMyTweetOnly } from "./TweetsList";
 
 class User extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      data: []
+    };
   }
 
   addUser = e => {
@@ -45,21 +48,31 @@ class User extends React.Component {
   };
 
   grabTweets = async () => {
-    let response = await firebase.database().ref("tweeter").once('value').then((snapshot)=>{
-      snapshot.forEach((childSnapshot)=>{
-        console.log(childSnapshot)
-        // var childKey = childSnapshot.key;
-        // var childData = childSnapshot.val();
-        // console.log(`childkey: ${childkey}`)
-        // console.log(`childData: ${childData}`)
-      })
-
-    });
-    console.log(response);
+    const firestoreDB = firebase.firestore();
+    var docRef = firestoreDB
+      .collection("tweeter")
+      .get()
+      .then(snapshot => {
+        snapshot.docs.map(doc => {
+          console.log(doc.data());
+          const myTweets = this.state.data;
+          myTweets.push(doc.data());
+          this.setState({ data: myTweets });
+          
+        });
+      });
   };
 
   render() {
-    return <div>Hello</div>;
+    return this.state.data.map((mess, i) => (
+      <div key={i} className="myTweetContainer">
+        <div className="info">
+           <span className="myUsername">{mess.userName}</span>      
+          <span className="myDate"> {mess.date} </span>
+        </div>
+           <p className="myTweetOutput"> {mess.content} </p>   
+      </div>
+    ));
   }
 }
 

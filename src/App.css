@@ -73,6 +73,10 @@ a {
   color: white;
   text-decoration: none;
 }
+.myTweetsOnly {
+  display: inline;
+  border: 1px white solid;
+}
 .profile {
   padding-top: 40px;
   display: flex;
@@ -87,13 +91,22 @@ a {
   flex-direction: column;
   width: 25vw;
 }
-#newTweetContainer {
+.newTweetContainer {
   border: 1px white solid;
   margin-bottom: 10px;
   background-color: #343a40;
   width: 500px;
   margin-right: 40px;
   padding: 10px;
+}
+.myTweetContainer {
+  border: 1px white solid;
+  margin-bottom: 10px;
+  background-color: #343a40;
+  width: 500px;
+  margin-right: 40px;
+  padding: 10px;
+  display: none;
 }
 .info {
   display: flex;

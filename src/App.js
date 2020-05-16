@@ -7,6 +7,7 @@ import { getMessage, postMessage } from "./components/lib/api";
 import Profile from "./components/Profile";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import User from "./components/firebaseComponent";
+import Feature from "./components/features";
 // https://microblogging-eva-itc.web.app/
 
 class App extends Component {
@@ -37,7 +38,7 @@ class App extends Component {
               </li>
             </ul>
           </div>
-          <User />
+
           <Switch>
             <Route exact path="/">
               <h1>Welcome</h1>
@@ -50,6 +51,8 @@ class App extends Component {
             </Route>
             <Route path="/home">
               <Form addMessage={this.addMessage} />
+              <User />
+              <Feature />
               <TweetsList messages={this.state.messages} />
             </Route>
           </Switch>
